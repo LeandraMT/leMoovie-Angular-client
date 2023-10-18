@@ -180,7 +180,7 @@ export class FetchApiDataService {
 
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
-      console.error('Some error occurred: ', error.error.message);
+      console.error('An error occurred: ', error.error.message);
     }
     else {
       console.error(
