@@ -1,0 +1,15 @@
+mat-card {
+    background-color: #ebebeb;
+}
+
+mat-card-header {
+    margin-bottom: 20px;
+}
+
+mat-form-field {
+    margin: 10px;
+}
+
+button {
+    font-size: 17px;
+}

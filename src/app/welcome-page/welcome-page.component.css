@@ -2,7 +2,7 @@
 
 .main-page {
     overflow: hidden;
-    background: linear-gradient(143deg, rgb(188, 185, 186) 0%, rgb(123, 141, 161) 79%);
+    background-color: #321313;
     font-family: 'Raleway';
 }
 
@@ -13,6 +13,7 @@ h1 {
 
     font-size: 100px;
     font-weight: 300;
+    color: #929aab;
 }
 
 .buttons {

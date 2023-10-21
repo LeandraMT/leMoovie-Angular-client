@@ -108,6 +108,10 @@ export class FetchApiDataService {
     const user = JSON.parse(localStorage.getItem('user') || '{ }');
     const token = localStorage.getItem('token');
 
+    if (!user.FavouriteMovies) {
+      user.FavouriteMovies = [];
+    }
+
     user.FavouriteMovies.push(movieId);
 
     localStorage.setItem('user', JSON.stringify(user));

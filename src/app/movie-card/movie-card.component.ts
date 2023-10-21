@@ -1,22 +1,26 @@
 import { Component } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 // Components
-import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
+import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
+import { MatRipple } from '@angular/material/core';
 
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.css']
 })
+
 export class MovieCardComponent {
   movies: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
+    public dialog: MatDialog,
     public router: Router) { }
 
   ngOnInit(): void {
@@ -28,6 +32,17 @@ export class MovieCardComponent {
       this.movies = resp;
       console.log(this.movies);
       return this.movies;
+    });
+  }
+
+  userProfile(): void {
+    this.router.navigate(['profile']);
+  }
+
+  // Opening the dialogs
+  openGenreDialog(): void {
+    this.dialog.open(GenreDialogComponent, {
+      width: '300px'
     });
   }
 

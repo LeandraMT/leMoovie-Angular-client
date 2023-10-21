@@ -30,7 +30,7 @@ export class UserLoginFormComponent implements OnInit {
     this.fetchApiData.userLogin(this.loginData).subscribe((result) => {
       console.log(result);
 
-      localStorage.setItem('user', JSON.stringify(result.user.Username));
+      localStorage.setItem('user', JSON.stringify(result.user));
       localStorage.setItem('token', result.token);
 
       this.dialogRef.close();
@@ -40,7 +40,7 @@ export class UserLoginFormComponent implements OnInit {
       this.router.navigate(['movies']);
     }, (result) => {
       console.log(result);
-      this.snackBar.open('Login failed, please try again', 'X', {
+      this.snackBar.open('Login failed, please try again', 'OK', {
         duration: 2000
       });
     });

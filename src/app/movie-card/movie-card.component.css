@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400&display=swap');
 
 .page-background {
-    background: linear-gradient(143deg, rgb(188, 185, 186) 0%, rgb(123, 141, 161) 79%);
+    background-color: #321313;
     height: auto;
     overflow: hidden;
     font-family: 'Raleway';
@@ -17,15 +17,15 @@ mat-toolbar {
     justify-content: space-between;
 }
 
-mat-toolbar span {
-    font-size: 30px;
-}
 
 mat-icon {
+    margin-right: 10px;
     cursor: pointer;
+    color: black;
 }
 
 mat-card {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
     background-color: transparent;
     height: 550px;
 }
@@ -33,11 +33,11 @@ mat-card {
 mat-card-title {
     display: flex;
     justify-content: space-between;
-    margin: 10px;
+    margin-bottom: 20px;
     text-align: center;
     font-size: 26px;
     font-weight: 400;
-    color: black;
+    color: #b7b7b7;
 }
 
 mat-card-actions {
@@ -45,14 +45,14 @@ mat-card-actions {
 }
 
 mat-card-actions button {
+    color: #929aab;
     margin: 15px;
     font-size: 16px;
 }
 
 mat-card-actions button:hover {
     transition: 0.5s ease-in-out;
-    border-radius: 6px;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+    text-decoration: underline;
 }
 
 .movie-image {
@@ -62,17 +62,14 @@ mat-card-actions button:hover {
     height: auto;
 }
 
-.director-name {
+/*.director-name {
+    color: #9ba6a5;
     text-align: center;
     margin-top: 10px;
     font-size: 20px;
-}
+}*/
 
+.profile-btn,
 .logout-btn {
     font-size: 17px;
-}
-
-.logout-btn:hover {
-    background-color: #5b87b7;
-    color: black;
 }

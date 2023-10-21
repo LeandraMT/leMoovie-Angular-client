@@ -1,0 +1,41 @@
+<body class="page-background">
+    <mat-toolbar>
+        <button mat-button (click)="moviesPage()" class="movies-btn" style="color: #929aab;">
+            Movies
+        </button>
+        <button mat-button (click)="logoutUser()" class="logout-btn" style="color: #929aab;">
+            Logout
+        </button>
+    </mat-toolbar>
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="avatar"></div>
+            <mat-card-title>Hello, {{user}}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-actions>
+            <button mat-button style="background-color: #393e46; color: #fff; margin-left: 10px;">
+                Update Info
+            </button>
+            <button mat-button style="background-color: #393e46; color: #fff; margin-left: 10px;">
+                Delete Account
+            </button>
+        </mat-card-actions>
+    </mat-card>
+
+    <div class="movie-grid">
+        <mat-grid-list [cols]="5" rowHeight="600px">
+            <mat-grid-tile *ngFor="let movie of movies">
+                <mat-card class="movie-card">
+                    <mat-card-title class="movie-title">{{movie.Title}}</mat-card-title>
+                    <mat-card-subtitle>
+                        <img src={{movie.ImagePath}} class="movie-image" alt={{movie.Title}} />
+                    </mat-card-subtitle>
+                    <mat-card-actions>
+                        <div mat-card-avatar class="remove-icon"></div>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</body>

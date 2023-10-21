@@ -1,0 +1,21 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { DirectorDialogComponent } from './director-dialog.component';
+
+describe('DirectorDialogComponent', () => {
+  let component: DirectorDialogComponent;
+  let fixture: ComponentFixture<DirectorDialogComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [DirectorDialogComponent]
+    });
+    fixture = TestBed.createComponent(DirectorDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

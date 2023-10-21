@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400&display=swap');
+
+.page-background {
+    background-color: #321313;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Raleway';
+}
+
+mat-toolbar {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+}
+
+.movies-btn,
+.logout-btn {
+    font-size: 17px;
+}
+
+mat-card {
+    width: 300px;
+    position: relative;
+    top: 20px;
+    left: 80px;
+    background-color: #b7b7b7;
+}
+
+mat-card-title {
+    font-size: 20px;
+}
+
+.avatar {
+    background-image: url(./icons8-avatar-50.png);
+    background-size: cover;
+}
+
+button {
+    font-size: 14px;
+}
+
+p {
+    font-size: 19px;;
+}
+
+.movie-grid {
+    height: 100%;
+}
+
+.movie-card {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    height: 380px;
+}
+
+.movie-title {
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 26px;
+    font-weight: 400;
+    color: #b7b7b7;
+}
+
+.movie-image {
+    position: relative;
+    width: 250px;
+    height: auto;
+}
+
+.remove-icon {
+    background-image: url(./remove-icon.png);
+    background-size: cover;
+    margin: 10px;
+    cursor: pointer;
+}
