@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 // Components
 import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
 import { MatRipple } from '@angular/material/core';
+import { DirectorDialogComponent } from '../director-dialog/director-dialog.component';
+import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -42,6 +44,18 @@ export class MovieCardComponent {
   // Opening the dialogs
   openGenreDialog(): void {
     this.dialog.open(GenreDialogComponent, {
+      width: '300px'
+    });
+  }
+
+  openDirectorDialog(): void {
+    this.dialog.open(DirectorDialogComponent, {
+      width: '300px'
+    });
+  }
+
+  openSynopsisDialog(): void {
+    this.dialog.open(SynopsisDialogComponent, {
       width: '300px'
     });
   }

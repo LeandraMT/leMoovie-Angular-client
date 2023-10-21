@@ -18,11 +18,11 @@ mat-toolbar {
     font-size: 17px;
 }
 
-mat-card {
-    width: 300px;
+.card-info {
+    width: 500px;
     position: relative;
     top: 20px;
-    left: 80px;
+    left: 70%;
     background-color: #b7b7b7;
 }
 
@@ -35,6 +35,11 @@ mat-card-title {
     background-size: cover;
 }
 
+mat-card-actions {
+    display: flex;
+    justify-content: center;
+}
+
 button {
     font-size: 14px;
 }
@@ -45,6 +50,12 @@ p {
 
 .movie-grid {
     height: 100%;
+}
+
+.favourite-movies h1 {
+    margin-left: 20px;
+    font-weight: 300;
+    color: #929aab;
 }
 
 .movie-card {
