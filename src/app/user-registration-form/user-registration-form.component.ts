@@ -10,8 +10,17 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   templateUrl: './user-registration-form.component.html',
   styleUrls: ['./user-registration-form.component.css']
 })
+
+/**
+ * @remarks 
+ * This component handles user registration. A form will pop up for users to input their personal information
+ */
 export class UserRegistrationFormComponent implements OnInit {
 
+  /**
+   * Input property
+   * @param {Object} userData - the user registration data
+   */
   @Input() userData = {
     Username: '',
     Password: '',
@@ -26,6 +35,12 @@ export class UserRegistrationFormComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  /**
+   * @function
+   * To register a new user
+   * @remarks
+   * Send the user registration request to the API and handles the response
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
       console.log(result);

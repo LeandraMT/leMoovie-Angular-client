@@ -18,6 +18,10 @@ import { UserRegistrationFormComponent } from '../user-registration-form/user-re
     ])
   ],
 })
+
+/**
+ * Welcome page where the users can either register or login
+ */
 export class WelcomePageComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 

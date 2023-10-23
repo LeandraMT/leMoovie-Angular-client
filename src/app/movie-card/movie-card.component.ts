@@ -16,9 +16,25 @@ import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.comp
   styleUrls: ['./movie-card.component.css']
 })
 
+/**
+ * @remarks
+ * This component displays movie cards and provides actions like viewing additional information
+ */
 export class MovieCardComponent {
+  /**
+   * Array to store movie data
+   * @property {any[]} movies
+   */
   movies: any[] = [];
 
+  /**
+   * Constructs a new MovieCardComponent.
+   *
+   * @param {FetchApiDataService} fetchApiData - The service for making API requests.
+   * @param {MatSnackBar} snackBar - The snackbar service for displaying notifications.
+   * @param {MatDialog} dialog - The Angular Material dialog service for opening dialogs.
+   * @param {Router} router - The Angular router service for navigation.
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -29,6 +45,11 @@ export class MovieCardComponent {
     this.getMovies();
   }
 
+  /**
+   * @remarks
+   * Fetches data from API and stores movie data in the movies property
+   */
+
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -37,11 +58,16 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Navigates to the user's profile
+   */
   userProfile(): void {
     this.router.navigate(['profile']);
   }
 
-  // Opening the dialogs
+  /** 
+   * Opening the dialogs for Genre, Director and Synopsis
+   */
   openGenreDialog(): void {
     this.dialog.open(GenreDialogComponent, {
       width: '300px'
@@ -60,6 +86,11 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Logs the user out
+   * @remarks
+   * Clears the user and token data from the local storage and navigates to the welcome page
+   */
   logoutUser(): void {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
