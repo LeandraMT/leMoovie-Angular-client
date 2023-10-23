@@ -1,7 +1,7 @@
 <body>
-    <mat-card>
+    <mat-card *ngFor="let movie of genreInfo , let i = index">
         <mat-card-title>
-            {{genreInfo}}
+            {{movie?.Title}}
         </mat-card-title>
     </mat-card>
 </body>

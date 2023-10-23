@@ -8,8 +8,8 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   styleUrls: ['./genre-dialog.component.css']
 })
 export class GenreDialogComponent implements OnInit {
-  genreName: string = '';
-  genreInfo: string = '';
+  genreName: any = localStorage.getItem('genreName')?.toString();
+  genreInfo: any
 
   constructor(
     public fetchApiData: FetchApiDataService,

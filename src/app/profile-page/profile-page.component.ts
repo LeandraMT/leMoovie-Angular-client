@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -12,33 +12,53 @@ import { Router } from '@angular/router';
 /**
  * @remarks
  * This component renders the favourite movies as cards and actions like logging out
+ * Array to store user's favourite movies
+ * @property {any[]} movies 
+ * @property {Object} user - the user's data retrieved from the local storage
  */
-export class ProfilePageComponent {
-  /**
-   * Array to store user's favourite movies
-   * @property {any[]} movies 
-   * @property {Object} user - the user's data retrieved from the local storage
-   */
-  movies: any[] = [];
+
+export class ProfilePageComponent implements OnInit {
+  /*movies: any[] = [];*/
   user = JSON.parse(localStorage.getItem('user') || '{}');
 
+  @Input() userData = {
+    Username: '',
+    Password: '',
+    Email: '',
+  }
 
-  /**
-   * Constructs a new ProfilePageComponent.
-   *
-   * @param {FetchApiDataService} fetchApiData - The service for making API requests.
-   * @param {MatSnackBar} snackBar - The snackbar service for displaying notifications.
-   * @param {Router} router - The Angular router service for navigation.
-   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public router: Router) { }
 
   ngOnInit(): void {
-    this.fetchApiData.getAllMovies().subscribe((data) => {
-      this.movies = data.slice(0, 3);
-    });
+    const user = this.getUser();
+
+    if (!user._id) {
+      this.router.navigate(['welcome']);
+    }
+
+    this.user = user;
+    this.userData = {
+      Username: user.Username || '',
+      Email: user.Email || '',
+      Password: ''
+    }
+  }
+
+  getUser() {
+    return JSON.parse(localStorage.getItem('user') || '{ }');
+  }
+
+  updateUser(): void {
+    this.fetchApiData.editUser(this.userData).subscribe((resutlt) => {
+      localStorage.setItem('user', JSON.stringify(resutlt))
+      this.user = resutlt;
+      this.snackBar.open('Your user information has been updated', 'OK', {
+        duration: 2000
+      });
+    })
   }
 
   /**

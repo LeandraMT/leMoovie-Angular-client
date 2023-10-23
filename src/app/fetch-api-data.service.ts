@@ -61,7 +61,7 @@ export class FetchApiDataService {
   getDirector(directorName: string): Observable<any> {
     const token = localStorage.getItem('token');
 
-    return this.http.get(apiUrl + 'movies/Director' + directorName, {
+    return this.http.get(apiUrl + 'movies/directors/' + directorName, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token
       })
@@ -74,7 +74,7 @@ export class FetchApiDataService {
   getGenre(genreName: string): Observable<any> {
     const token = localStorage.getItem('token');
 
-    return this.http.get(apiUrl + 'movies/Genre' + genreName, {
+    return this.http.get(apiUrl + 'movies/Genre/' + genreName, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token
       })

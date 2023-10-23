@@ -11,17 +11,33 @@
     <mat-card class="card-info">
         <mat-card-header>
             <div mat-card-avatar class="avatar"></div>
-            <mat-card-title>Hello, {{user}}</mat-card-title>
+            <mat-card-title>Hello, {{user.Username}}</mat-card-title>
         </mat-card-header>
 
-        <mat-card-actions>
-            <button mat-button style="background-color: #393e46; color: #fff; margin-left: 10px;">
-                Update Info
-            </button>
-            <button mat-button style="background-color: #393e46; color: #fff; margin-left: 50px;">
-                Delete Account
-            </button>
-        </mat-card-actions>
+        <mat-card-content>
+            <form class="profile-form">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text" name="Username"
+                        required />
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput [(ngModel)]="userData.Password" placeholder="Password" type="password"
+                        name="Password" required />
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput [(ngModel)]="userData.Email" placeholder="Email" type="email" name="Email"
+                        required />
+                </mat-form-field>
+
+                <mat-card-actions>
+                    <button mat-raised-button (click)="updateUser()" style="background-color: #393e46; color: #fff;">
+                        Update User
+                    </button>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
     </mat-card>
 
     <div class="movie-grid">
@@ -29,7 +45,7 @@
             <h1>Favourite Movies:</h1>
         </div>
 
-        <mat-grid-list [cols]="5" rowHeight="600px">
+        <!--<mat-grid-list [cols]="5" rowHeight="600px">
             <mat-grid-tile *ngFor="let movie of movies">
                 <mat-card class="movie-card">
                     <mat-card-title class="movie-title">{{movie.Title}}</mat-card-title>
@@ -41,6 +57,6 @@
                     </mat-card-actions>
                 </mat-card>
             </mat-grid-tile>
-        </mat-grid-list>
+        </mat-grid-list>-->
     </div>
 </body>

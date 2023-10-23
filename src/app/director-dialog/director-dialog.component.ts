@@ -8,8 +8,8 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   styleUrls: ['./director-dialog.component.css']
 })
 export class DirectorDialogComponent implements OnInit {
-  directorName: string = '';
-  directorInfo: string = '';
+  directorName: any = localStorage.getItem('directorName')?.toString();
+  directorInfo: any
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -21,12 +21,12 @@ export class DirectorDialogComponent implements OnInit {
   }
 
   getDirectorInfo(): void {
-    this.fetchApiData.getGenre(this.directorName).subscribe(
+    this.fetchApiData.getDirector(this.directorName).subscribe(
       (data: any) => {
         this.directorInfo = data;
       },
       (error) => {
-        console.error('Error while fetching genre info:', error);
+        console.error('Error while fetching Director info:', error);
       }
     );
   }

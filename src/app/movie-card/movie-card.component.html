@@ -21,11 +21,13 @@
                     </mat-card-subtitle>
 
                     <mat-card-actions>
-                        <button mat-button (click)="openGenreDialog()" style="background-color: transparent;">
+                        <button mat-button (click)="openGenreDialog(movie.Genre.Name)"
+                            style="background-color: transparent;">
                             Genre
                         </button>
 
-                        <button mat-button (click)="openDirectorDialog()" style="background-color: transparent;">
+                        <button mat-button (click)="openDirectorDialog(movie.Director.Name)"
+                            style="background-color: transparent;">
                             Director
                         </button>
 
