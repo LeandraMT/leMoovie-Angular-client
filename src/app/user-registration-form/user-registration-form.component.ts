@@ -11,16 +11,9 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   styleUrls: ['./user-registration-form.component.css']
 })
 
-/**
- * @remarks 
- * This component handles user registration. A form will pop up for users to input their personal information
- */
+
 export class UserRegistrationFormComponent implements OnInit {
 
-  /**
-   * Input property
-   * @param {Object} userData - the user registration data
-   */
   @Input() userData = {
     Username: '',
     Password: '',

@@ -12,28 +12,13 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   styleUrls: ['./user-login-form.component.css']
 })
 
-/**
- * @remarks
- * This component handles the user login where a form pops up and users can input their Username and Password
- */
 export class UserLoginFormComponent implements OnInit {
 
-  /**
-   * @param {Object} loginData - the Username and Password data are processed here
-   */
   @Input() loginData = {
     Username: '',
     Password: ''
   };
 
-  /**
-   * Constructs a new UserLoginFormComponent.
-   *
-   * @param {FetchApiDataService} fetchApiData - The service for making API requests.
-   * @param {MatDialogRef<UserLoginFormComponent>} dialogRef - The reference to the dialog for this component.
-   * @param {MatSnackBar} snackBar - The snackbar service for displaying notifications.
-   * @param {Router} router - The Angular router service for navigation.
-   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
@@ -44,7 +29,6 @@ export class UserLoginFormComponent implements OnInit {
 
   loginUser(): void {
     this.fetchApiData.userLogin(this.loginData).subscribe((result) => {
-      console.log(result);
 
       localStorage.setItem('user', JSON.stringify(result.user));
       localStorage.setItem('token', result.token);

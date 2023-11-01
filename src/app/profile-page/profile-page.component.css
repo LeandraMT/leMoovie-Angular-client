@@ -21,7 +21,7 @@ mat-toolbar {
 
 .card-info {
     width: 420px;
-    height: 380px;
+    height: 450px;
     position: relative;
     top: 20px;
     background-color: lightgray;
@@ -32,8 +32,9 @@ mat-card-title {
 }
 
 .avatar {
-    background-image: url(./icons8-avatar-50.png);
+    background-image: url(./astronaut.png);
     background-size: cover;
+    box-shadow: 6px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 mat-card-content form {

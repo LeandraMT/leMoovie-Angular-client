@@ -45,8 +45,8 @@
             <h1>Favourite Movies:</h1>
         </div>
 
-        <!--<mat-grid-list [cols]="5" rowHeight="600px">
-            <mat-grid-tile *ngFor="let movie of movies">
+        <mat-grid-list [cols]="5" rowHeight="600px">
+            <mat-grid-tile *ngFor="let movie of favouriteMovies, let i = index">
                 <mat-card class="movie-card">
                     <mat-card-title class="movie-title">{{movie.Title}}</mat-card-title>
                     <mat-card-subtitle>
@@ -57,6 +57,6 @@
                     </mat-card-actions>
                 </mat-card>
             </mat-grid-tile>
-        </mat-grid-list>-->
+        </mat-grid-list>
     </div>
 </body>

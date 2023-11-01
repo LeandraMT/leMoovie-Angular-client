@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
  */
 
 export class ProfilePageComponent implements OnInit {
-  /*movies: any[] = [];*/
+  favouriteMovies: any[] = [];
   user = JSON.parse(localStorage.getItem('user') || '{}');
 
   @Input() userData = {
@@ -45,6 +45,8 @@ export class ProfilePageComponent implements OnInit {
       Email: user.Email || '',
       Password: ''
     }
+
+    this.getFavouriteMovies();
   }
 
   getUser() {
@@ -52,25 +54,25 @@ export class ProfilePageComponent implements OnInit {
   }
 
   updateUser(): void {
-    this.fetchApiData.editUser(this.userData).subscribe((resutlt) => {
-      localStorage.setItem('user', JSON.stringify(resutlt))
-      this.user = resutlt;
+    this.fetchApiData.editUser(this.userData).subscribe((result) => {
+      localStorage.setItem('user', JSON.stringify(result))
+      this.user = result;
       this.snackBar.open('Your user information has been updated', 'OK', {
         duration: 2000
       });
     })
   }
 
-  /**
-   * Navigates to movies page
-   */
+  getFavouriteMovies(): void {
+    this.fetchApiData.getFavouriteMovies().subscribe((data) => {
+      this.favouriteMovies = data;
+    });
+  }
+
   moviesPage(): void {
     this.router.navigate(['movies']);
   }
 
-  /**
-   * Logs the user out
-   */
   logoutUser(): void {
     localStorage.removeItem('user');
     localStorage.removeItem('token');

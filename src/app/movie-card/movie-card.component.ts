@@ -3,6 +3,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 // Components
 import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
@@ -20,34 +21,23 @@ import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.comp
  * This component displays movie cards and provides actions like viewing additional information
  */
 export class MovieCardComponent {
-  /**
-   * Array to store movie data
-   * @property {any[]} movies
-   */
   movies: any[] = [];
 
-  /**
-   * Constructs a new MovieCardComponent.
-   *
-   * @param {FetchApiDataService} fetchApiData - The service for making API requests.
-   * @param {MatSnackBar} snackBar - The snackbar service for displaying notifications.
-   * @param {MatDialog} dialog - The Angular Material dialog service for opening dialogs.
-   * @param {Router} router - The Angular router service for navigation.
-   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
     public router: Router) { }
 
+
   ngOnInit(): void {
     this.getMovies();
   }
 
-  /**
-   * @remarks
-   * Fetches data from API and stores movie data in the movies property
-   */
+  //Saving the user object to localStorage
+  setUser(user: any): void {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -57,16 +47,27 @@ export class MovieCardComponent {
     });
   }
 
-  /**
-   * Navigates to the user's profile
-   */
   userProfile(): void {
     this.router.navigate(['profile']);
   }
 
-  /** 
-   * Opening the dialogs for Genre, Director and Synopsis
-   */
+  addMovieToFavourites(id: string): void {
+    this.fetchApiData.addFavouriteMovies(id).subscribe((resp: any) => {
+      let movie = this.movies.find((m: any) => m._id === id).Title;
+      this.snackBar.open(`${movie} has been added to your favourite list`, 'OK', {
+        duration: 2000
+      });
+      this.setUser(resp);
+      this.router.navigate(['profile']);
+    },
+      (error) => {
+        console.error('There has been an error while adding to favourites', error);
+        this.snackBar.open('Failed to add movie to favourite list', 'X', {
+          duration: 2000
+        })
+      });
+  }
+
   openGenreDialog(genreName: any): void {
     localStorage.setItem('genreName', genreName);
     this.dialog.open(GenreDialogComponent, {
@@ -82,17 +83,6 @@ export class MovieCardComponent {
     });
   }
 
-  openSynopsisDialog(): void {
-    this.dialog.open(SynopsisDialogComponent, {
-      width: '300px'
-    });
-  }
-
-  /**
-   * Logs the user out
-   * @remarks
-   * Clears the user and token data from the local storage and navigates to the welcome page
-   */
   logoutUser(): void {
     localStorage.removeItem('user');
     localStorage.removeItem('token');

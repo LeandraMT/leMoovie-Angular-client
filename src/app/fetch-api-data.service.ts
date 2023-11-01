@@ -3,7 +3,6 @@ import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { getNsPrefix } from '@angular/compiler';
 
 
 // Declaring API that will provide data for the client app
@@ -17,16 +16,21 @@ export class FetchApiDataService {
   // Provides HttpClient to the entire class using this.http
   constructor(private http: HttpClient) { }
 
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+  };
 
-  public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
-    return this.http.post(apiUrl + 'users', userDetails).pipe(
+  public userRegistration(/*userDetails:*/loginData: any): Observable<any> {
+    console.log(loginData);
+    return this.http.post(apiUrl + 'users', loginData, this.httpOptions).pipe(
       catchError(this.handleError)
     );
   }
 
   public userLogin(userDetails: any): Observable<any> {
-    return this.http.post(apiUrl + 'login', userDetails).pipe(
+    return this.http.post(apiUrl + 'login', userDetails, this.httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -105,7 +109,7 @@ export class FetchApiDataService {
   }
 
   addFavouriteMovies(movieId: string): Observable<any> {
-    const user = JSON.parse(localStorage.getItem('user') || '{ }');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
 
     if (!user.FavouriteMovies) {
@@ -116,17 +120,18 @@ export class FetchApiDataService {
 
     localStorage.setItem('user', JSON.stringify(user));
 
-    return this.http.get(apiUrl + 'users/' + user.Username + '/movies/' + movieId, {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token
-      }),
-      responseType: 'text'
-    }).pipe(
-      map(this.extractResponseData),
-      map((data) => data.FavouriteMovies),
-      catchError(this.handleError)
-    );
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    });
+
+    return this.http.post(apiUrl + 'users/' + user.Username + '/movies/' + movieId, null, { headers })
+      .pipe(
+        map(this.extractResponseData),
+        map((data) => data.FavouriteMovies),
+        catchError(this.handleError)
+      );
   }
+
 
   editUser(updatedUser: any): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{ }');
