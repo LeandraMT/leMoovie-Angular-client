@@ -1,9 +1,10 @@
 <body class="page-background">
     <mat-toolbar>
-        <button mat-button (click)="userProfile()" class="profile-btn" style="color: #929aab;">
+        <button mat-button (click)="userProfile()" class="profile-btn"
+            style="color: #606470; background-color: #93deff;">
             Profile
         </button>
-        <button mat-button (click)="logoutUser()" class="logout-btn" style="color: #929aab;">
+        <button mat-button (click)="logoutUser()" class="logout-btn" style="color: #606470; background-color: #93deff;">
             Logout
         </button>
     </mat-toolbar>
@@ -14,7 +15,6 @@
                     <mat-card>
                         <mat-card-title>
                             {{movie.Title}}
-                            <mat-icon (click)="addMovieToFavourites(movie._id)">favorite_border</mat-icon>
                         </mat-card-title>
 
                         <mat-card-subtitle>
@@ -22,15 +22,14 @@
                         </mat-card-subtitle>
 
                         <mat-card-actions>
-                            <button mat-button (click)="openGenreDialog(movie.Genre.Name)"
-                                style="background-color: transparent;">
+                            <button mat-button (click)="openGenreDialog(movie.Genre.Name)">
                                 Genre
                             </button>
 
-                            <button mat-button (click)="openDirectorDialog(movie.Director.Name)"
-                                style="background-color: transparent;">
+                            <button mat-button (click)="openDirectorDialog(movie.Director.Name)">
                                 Director
                             </button>
+                            <mat-icon (click)="addMovieToFavourites(movie._id)">favorite_border</mat-icon>
                         </mat-card-actions>
                     </mat-card>
                 </mat-grid-tile>
@@ -38,5 +37,4 @@
         </div>
     </div>
 </body>
-
 <router-outlet></router-outlet>

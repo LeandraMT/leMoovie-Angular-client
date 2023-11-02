@@ -49,24 +49,66 @@ export class ProfilePageComponent implements OnInit {
     this.getFavouriteMovies();
   }
 
+  //Saving the user object to localStorage
+  setUser(user: any): void {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  //Handling the form inputs to the backend
+  updateUserHandler(obj: any): any {
+    const updatedUser: Record<string, any> = {};
+    Object.keys(obj).forEach((key) => {
+      if (obj[key] !== '') {
+        updatedUser[key] = obj[key];
+      }
+    });
+    return updatedUser;
+  }
+
+
+
   getUser() {
     return JSON.parse(localStorage.getItem('user') || '{ }');
   }
 
   updateUser(): void {
-    this.fetchApiData.editUser(this.userData).subscribe((result) => {
-      localStorage.setItem('user', JSON.stringify(result))
-      this.user = result;
-      this.snackBar.open('Your user information has been updated', 'OK', {
-        duration: 2000
+    const newData = this.updateUserHandler(this.userData);
+    this.fetchApiData.editUser(newData).subscribe((result) => {
+      this.snackBar.open('Your information has been updated', 'OK', {
+        duration: 2000,
       });
+      this.setUser(result);
+      window.location.reload();
     })
   }
 
+  deleteUser(): void {
+    if (confirm('Are you sure you want to delete your account?')) {
+      this.router.navigate(['welcome']).then(() => {
+        this.snackBar.open('Account has been deleted.', 'OK', {
+          duration: 2000
+        });
+        this.fetchApiData.deleteUser().subscribe((resp: any) => {
+          localStorage.clear();
+        });
+      });
+    }
+  }
+
   getFavouriteMovies(): void {
-    this.fetchApiData.getFavouriteMovies().subscribe((data) => {
+    this.fetchApiData.getAllMovies().subscribe((data) => {
       this.favouriteMovies = data;
     });
+  }
+
+  deleteFavouriteMovies(id: string): void {
+    this.fetchApiData.deleteFavouriteMovies(id).subscribe((resp: any) => {
+      this.snackBar.open('Movie removed from favourites', 'OK', {
+        duration: 2000,
+      });
+      this.setUser(resp);
+      window.location.reload();
+    })
   }
 
   moviesPage(): void {

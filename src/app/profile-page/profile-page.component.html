@@ -1,44 +1,64 @@
 <body class="page-background">
     <mat-toolbar>
-        <button mat-button (click)="moviesPage()" class="movies-btn" style="color: #929aab;">
+        <button mat-button (click)="moviesPage()" class="movies-btn" style="color: #606470; background-color: #93deff;">
             Movies
         </button>
-        <button mat-button (click)="logoutUser()" class="logout-btn" style="color: #929aab;">
+        <button mat-button (click)="logoutUser()" class="logout-btn" style="color: #606470; background-color: #93deff;">
             Logout
         </button>
     </mat-toolbar>
 
-    <mat-card class="card-info">
-        <mat-card-header>
-            <div mat-card-avatar class="avatar"></div>
-            <mat-card-title>Hello, {{user.Username}}</mat-card-title>
-        </mat-card-header>
+    <div class="profile-cards">
+        <mat-card class="card-info">
+            <mat-card-header>
+                <div mat-card-avatar class="avatar"></div>
+                <mat-card-title>Hello, {{user.Username}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <h3 mat-line>Username</h3>
+                <p mat-line>{{ user.Username }}</p>
 
-        <mat-card-content>
-            <form class="profile-form">
-                <mat-form-field>
-                    <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text" name="Username"
-                        required />
-                </mat-form-field>
+                <h3 mat-line>Email</h3>
+                <p mat-line>{{ user.Email }}</p>
+            </mat-card-content>
+        </mat-card>
 
-                <mat-form-field>
-                    <input matInput [(ngModel)]="userData.Password" placeholder="Password" type="password"
-                        name="Password" required />
-                </mat-form-field>
+        <mat-card class="card-update">
+            <mat-card-header>
+                <mat-card-title>Edit your info:</mat-card-title>
+            </mat-card-header>
 
-                <mat-form-field>
-                    <input matInput [(ngModel)]="userData.Email" placeholder="Email" type="email" name="Email"
-                        required />
-                </mat-form-field>
+            <mat-card-content>
+                <form class="profile-form">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text"
+                            name="Username" required />
+                    </mat-form-field>
 
-                <mat-card-actions>
-                    <button mat-raised-button (click)="updateUser()" style="background-color: #393e46; color: #fff;">
-                        Update User
-                    </button>
-                </mat-card-actions>
-            </form>
-        </mat-card-content>
-    </mat-card>
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="userData.Password" placeholder="Password" type="password"
+                            name="Password" required />
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="userData.Email" placeholder="Email" type="email" name="Email"
+                            required />
+                    </mat-form-field>
+
+                    <mat-card-actions>
+                        <button mat-raised-button (click)="updateUser()"
+                            style="color: #606470; background-color: #93deff;">
+                            Save changes
+                        </button>
+
+                        <button mat-raised-button color="warn" (click)="deleteUser()">
+                            Delete your account
+                        </button>
+                    </mat-card-actions>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
 
     <div class="movie-grid">
         <div class="favourite-movies">
@@ -52,9 +72,9 @@
                     <mat-card-subtitle>
                         <img src={{movie.ImagePath}} class="movie-image" alt={{movie.Title}} />
                     </mat-card-subtitle>
-                    <mat-card-actions>
-                        <div mat-card-avatar class="remove-icon"></div>
-                    </mat-card-actions>
+                    <button mat-icon-button (click)="deleteFavouriteMovies(movie._id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </mat-card>
             </mat-grid-tile>
         </mat-grid-list>

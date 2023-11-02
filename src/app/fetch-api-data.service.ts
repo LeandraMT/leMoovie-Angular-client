@@ -171,15 +171,16 @@ export class FetchApiDataService {
 
     localStorage.setItem('user', JSON.stringify(user));
 
-    return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieId, {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token
-      }),
-      responseType: 'text'
-    }).pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    });
+
+    return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieId)
+      .pipe(
+        map(this.extractResponseData),
+        map((data) => data.FavouriteMovies),
+        catchError(this.handleError)
+      );
   }
 
   private extractResponseData(res: any): any {

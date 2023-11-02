@@ -1,7 +1,11 @@
 <body>
-    <mat-card *ngFor="let movie of genreInfo , let i = index">
+    <mat-card>
         <mat-card-title>
-            {{movie?.Title}}
+            <!--{{movie?.Genre.Name}}-->
+            {{genreInfo[0]?.Genre?.Name}}
+            <button mat-icon-button (click)="closeDialog()">
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-card-title>
     </mat-card>
 </body>

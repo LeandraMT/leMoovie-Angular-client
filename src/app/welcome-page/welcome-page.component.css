@@ -2,7 +2,7 @@
 
 .main-page {
     overflow: hidden;
-    background-color: #321313;
+    background-color: #323643;
     font-family: 'Raleway';
 }
 
@@ -13,7 +13,7 @@ h1 {
 
     font-size: 100px;
     font-weight: 300;
-    color: #929aab;
+    color: #f7f7f7;
 }
 
 .buttons {
@@ -29,70 +29,38 @@ h1 {
 }
 
 /* RESPONSIVE DESIGN */
-@media only screen and (max-width: 289px) {
+@media (max-width: 375px) {
     h1 {
-        font-size: 24px;
-        margin-top: 50%;
+        text-align: center;
+        font-size: 36px;
     }
 
     .buttons {
         display: flex;
         flex-direction: column;
-        align-items: center;
     }
 
     .buttons button {
-        font-size: 18px;
-        padding: 15px 40px;
         margin: 20px;
+        padding: 24px 55px;
     }
 }
 
-@media only screen and (max-width: 390px) {
+@media (min-width: 376px) and (max-width: 475px) {
     h1 {
-        font-size: 30px;
-    }
-
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .buttons button {
-        font-size: 18px;
-        padding: 15px 40px;
-        margin: 20px;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    h1 {
-        margin-top: 50%;
+        margin-top: 20%;
+        text-align: center;
         font-size: 40px;
     }
 
     .buttons {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        margin: 20px;
     }
 
     .buttons button {
-        font-size: 22px;
-        padding: 20px 50px;
-        margin: 30px;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    h1 {
-        font-size: 40px;
-    }
-
-    .buttons button {
-        margin: 80px;
-        font-size: 18px;
-        padding: 20px 50px;
+        margin: 20px;
+        width: 300px;
     }
 }

@@ -53,8 +53,8 @@ export class MovieCardComponent {
 
   addMovieToFavourites(id: string): void {
     this.fetchApiData.addFavouriteMovies(id).subscribe((resp: any) => {
-      let movie = this.movies.find((m: any) => m._id === id).Title;
-      this.snackBar.open(`${movie} has been added to your favourite list`, 'OK', {
+      let movie = this.movies.find((m: any) => m._id === id);
+      this.snackBar.open(`${movie.Title} has been added to your favourite list`, 'OK', {
         duration: 2000
       });
       this.setUser(resp);
