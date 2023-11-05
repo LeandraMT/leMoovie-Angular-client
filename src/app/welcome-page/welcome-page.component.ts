@@ -6,7 +6,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
 import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
 
-
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
@@ -19,11 +18,10 @@ import { UserRegistrationFormComponent } from '../user-registration-form/user-re
   ],
 })
 
-/**
- * Welcome page where the users can either register or login
- */
 export class WelcomePageComponent implements OnInit {
-  constructor(public dialog: MatDialog) { }
+
+  constructor(
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }

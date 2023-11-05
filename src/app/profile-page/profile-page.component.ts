@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 export class ProfilePageComponent implements OnInit {
   favouriteMovies: any[] = [];
   user = JSON.parse(localStorage.getItem('user') || '{}');
+  columnCount = 4;
 
   @Input() userData = {
     Username: '',
@@ -47,11 +48,39 @@ export class ProfilePageComponent implements OnInit {
     }
 
     this.getFavouriteMovies();
+
+    this.updateGridColumns();
   }
 
   //Saving the user object to localStorage
   setUser(user: any): void {
     localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  // Responsive design
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.updateGridColumns();
+  }
+
+  updateGridColumns() {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth < 460) {
+      this.columnCount = 1;
+    }
+    else if (screenWidth >= 476 && screenWidth <= 660) {
+      this.columnCount = 2;
+    }
+    else if (screenWidth > 661 && screenWidth <= 975) {
+      this.columnCount = 3;
+    }
+    else if (screenWidth > 976 && screenWidth <= 1280) {
+      this.columnCount = 4;
+    }
+    else {
+      this.columnCount = 5;
+    }
   }
 
   //Handling the form inputs to the backend
@@ -81,6 +110,7 @@ export class ProfilePageComponent implements OnInit {
       window.location.reload();
     })
   }
+
 
   deleteUser(): void {
     if (confirm('Are you sure you want to delete your account?')) {

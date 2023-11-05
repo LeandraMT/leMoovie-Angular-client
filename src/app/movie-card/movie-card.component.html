@@ -10,7 +10,7 @@
     </mat-toolbar>
     <div class="movie-grid">
         <div>
-            <mat-grid-list [cols]="5" rowHeight="600px">
+            <mat-grid-list [cols]="columnCount" rowHeight="600px">
                 <mat-grid-tile *ngFor="let movie of movies; let i=index;">
                     <mat-card>
                         <mat-card-title>

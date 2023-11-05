@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,7 +8,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 // Components
 import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
 import { DirectorDialogComponent } from '../director-dialog/director-dialog.component';
-import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -22,6 +21,7 @@ import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.comp
  */
 export class MovieCardComponent {
   movies: any[] = [];
+  columnCount: number = 5;
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -32,6 +32,34 @@ export class MovieCardComponent {
 
   ngOnInit(): void {
     this.getMovies();
+    this.updateGridColumns();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.updateGridColumns();
+  }
+
+
+  //Responsive with host listener
+  updateGridColumns() {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth < 460) {
+      this.columnCount = 1;
+    }
+    else if (screenWidth > 476 && screenWidth <= 660) {
+      this.columnCount = 2;
+    }
+    else if (screenWidth > 661 && screenWidth <= 975) {
+      this.columnCount = 3;
+    }
+    else if (screenWidth > 976 && screenWidth <= 1280) {
+      this.columnCount = 4;
+    }
+    else {
+      this.columnCount = 5;
+    }
   }
 
   //Saving the user object to localStorage

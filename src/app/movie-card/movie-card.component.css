@@ -73,3 +73,10 @@ mat-card-actions button:hover {
 }
 
 
+/* Responsive */
+@media (max-width: 375px) {
+    mat-grid-list {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}

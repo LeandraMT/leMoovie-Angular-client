@@ -99,6 +99,7 @@ mat-card-actions button {
     height: 540px;
 }
 
+
 mat-card-title {
     margin: 20px;
     text-align: center;
@@ -116,4 +117,21 @@ mat-card-title {
 
 mat-card button {
     align-self: center;
+}
+
+
+/* Repsonsive */
+@media (max-width: 700px) {
+    .profile-cards {
+        display: flex;
+        flex-direction: column;
+    }
+
+    mat-card {
+        margin: 30px auto;
+    }
+
+    .card-info {
+        height: 280px;
+    }
 }
