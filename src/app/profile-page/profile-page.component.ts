@@ -63,6 +63,7 @@ export class ProfilePageComponent implements OnInit {
     this.updateGridColumns();
   }
 
+
   updateGridColumns() {
     const screenWidth = window.innerWidth;
 
